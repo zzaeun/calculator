@@ -1,43 +1,69 @@
-
 class Calculator {
-
-    var num1: Int
-    var num2: Int
+    let addOperation = AddOperation()
+    let substractOperation = SubstractOperation()
+    let multiplyOperation = MultiplyOperation()
+    let remainderOperation = DivideOperation1()
+    let quotientOperation = DivideOperation2()
     
-    init(num1: Int, num2: Int) {
-        self.num1 = num1
-        self.num2 = num2
+    func add(_ num1: Int, _ num2: Int) -> Int {
+        return addOperation.add(num1, num2)
     }
     
-    func add() -> Int {
+    func sub(_ num1: Int, _ num2: Int) -> Int {
+        return substractOperation.sub(num1, num2)
+    }
+    
+    func mul(_ num1: Int, _ num2: Int) -> Int {
+        return multiplyOperation.mul(num1, num2)
+    }
+    
+    func div1(_ num1: Int, _ num2: Int) -> Int? {
+        return remainderOperation.remainder(num1, num2)
+    }
+    
+    func div2(_ num1: Int, _ num2: Int) -> Int? {
+        return quotientOperation.quotient(num1, num2)
+    }
+}
+
+class AddOperation {
+    func add(_ num1: Int, _ num2: Int) -> Int {
         return num1 + num2
     }
-    
-    func sub() -> Int {
+}
+
+class SubstractOperation {
+    func sub(_ num1: Int, _ num2: Int) -> Int {
         return num1 - num2
     }
-    
-    // 나머지 연산
-    func div1() -> Int? {
-        if num2 == 0 { return nil }
-        return num1 % num2
-    }
+}
 
-    // 몫 연산
-    func div2() -> Int? {
-        if num2 == 0 { return nil }
-        return num1 / num2
-    }
-    
-    func mul() -> Int {
+class MultiplyOperation {
+    func mul(_ num1: Int, _ num2: Int) -> Int {
         return num1 * num2
     }
 }
 
-let calculator = Calculator(num1: 6, num2: 3)
+class DivideOperation1 {
+    // 나머지
+    func remainder(_ num1: Int, _ num2: Int) -> Int? {
+        guard num2 != 0 else { return nil }
+        return num1 / num2
+    }
+}
 
-print(calculator.add())
-print(calculator.sub())
-print(calculator.div1())
-print(calculator.div2())
-print(calculator.mul())
+class DivideOperation2 {
+    // 몫
+    func quotient(_ num1: Int, _ num2: Int) -> Int? {
+        guard num2 != 0 else { return nil }
+        return num1 % num2
+    }
+    
+}
+
+let cal = Calculator()
+print(cal.add(5, 3))
+print(cal.sub(5, 3))
+print(cal.mul(5, 3))
+print(cal.div1(5, 3))
+print(cal.div2(5, 3))
