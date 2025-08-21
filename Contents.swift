@@ -17,11 +17,11 @@ class Calculator {
         return multiplyOperation.mul(num1, num2)
     }
     
-    func div1(_ num1: Int, _ num2: Int) -> Int? {
+    func remainder(_ num1: Int, _ num2: Int) -> Int? {
         return remainderOperation.remainder(num1, num2)
     }
     
-    func div2(_ num1: Int, _ num2: Int) -> Int? {
+    func quotient(_ num1: Int, _ num2: Int) -> Int? {
         return quotientOperation.quotient(num1, num2)
     }
 }
@@ -47,16 +47,21 @@ class MultiplyOperation {
 class DivideOperation1 {
     // 나머지
     func remainder(_ num1: Int, _ num2: Int) -> Int? {
-        guard num2 != 0 else { return nil }
-        return num1 % num2
+        if let number = (num2 == 0 ? nil : num1 % num2) {
+            return number
+        } else {
+            return nil
+        }
     }
 }
 
 class DivideOperation2 {
     // 몫
     func quotient(_ num1: Int, _ num2: Int) -> Int? {
-        guard num2 != 0 else { return nil }
-        return num1 / num2
+        guard let number = (num2 == 0 ? nil : num1 / num2) else {
+            return nil
+        }
+            return number
     }
     
 }
@@ -65,5 +70,5 @@ let cal = Calculator()
 print(cal.add(5, 3))
 print(cal.sub(5, 3))
 print(cal.mul(5, 3))
-print(cal.div1(5, 3))
-print(cal.div2(5, 3))
+print(cal.remainder(6, 2))
+print(cal.quotient(8, 0))
