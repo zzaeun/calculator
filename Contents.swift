@@ -48,7 +48,7 @@ class DivideOperation1 {
     // 나머지
     func remainder(_ num1: Int, _ num2: Int) -> Int? {
         guard num2 != 0 else { return nil }
-        return num1 / num2
+        return num1 % num2
     }
 }
 
@@ -56,7 +56,7 @@ class DivideOperation2 {
     // 몫
     func quotient(_ num1: Int, _ num2: Int) -> Int? {
         guard num2 != 0 else { return nil }
-        return num1 % num2
+        return num1 / num2
     }
     
 }
