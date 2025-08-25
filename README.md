@@ -61,7 +61,7 @@ Swift를 활용해 계산기 만들기 (Swift5 사용)
 <br>
 
 ### 보완) 퀵헬프 추가 및 나눗셈은 Double로 반환
-`option` + `command` + `/` 
+퀵헬프 추가: `option` + `command` + `/` 
 
 ```swift
 
@@ -102,6 +102,8 @@ class Calculator {
     print(calculator.div())
     print(calculator.mul())
 ```
+- Double(num1)처럼 각각의 변수를 Double()로 해주어야 하는데 Double(num1 / num2)로 하려고 했어서 이상하게 나왔었다..ㅎㅎ 하지만 이제는 완벽하게 해결 완료 👍🏻
+
 
 ---
 
