@@ -193,7 +193,69 @@ class Calculator {
             print("\(number)")
         }
   ```
+<br>
+
+#### 보완) `if let`, `guard let`을 활용해 0으로 나눌 경우를 Optional 처리
+
+```swift
+import Foundation
+
+class Calculator {
     
+        var num1: Int
+        var num2: Int
+        
+        init(num1: Int, num2: Int) {
+            self.num1 = num1
+            self.num2 = num2
+        }
+        
+        func add() -> Int {
+            return num1 + num2
+        }
+        
+        func sub() -> Int {
+            return num1 - num2
+        }
+        
+    // 나머지 연산
+          func div1() {
+              if let number = (num2 == 0 ? nil : Double(num1).truncatingRemainder(dividingBy: Double(num2))) {
+                  print("\(number)")
+              } else {
+                  print("정의할 수 없음")
+              }
+          }
+      
+     // 몫 연산
+          func div2() {
+              guard let number = (num2 == 0 ? nil : Double(num1) / Double(num2)) else {
+                  print("정의할 수 없음")
+                  return
+              }
+              let rounded = round(number * 100) / 100
+              print(rounded)
+          }
+        
+        func mul() -> Int {
+            return num1 * num2
+        }
+    }
+    
+    let calculator = Calculator(num1: 6, num2: 3)
+    
+    print(calculator.add())
+    print(calculator.sub())
+    calculator.div1()
+    calculator.div2()
+    print(calculator.mul())
+```
+- `%` 연산에서 `Double`로 어떻게 표현할 수 있을까 고민하던 중 팀원분의 코드 리뷰를 보면서 비슷한 문제를 겪고 해결한 내용을 봤다. `%` 연산자는 `Int`만 정의되어 있으므로 `Double` 타입으로 사용하려면 **`truncatingRemainder(dividingBy:)`** 메서드를 사용하면 해결할 수 있다는 것을 알게 되었다!! <br>
+이를 적용하니 `%`에서 원하는 대로 Double로 출력이 되었고, `/`에서는 Lv1에서 수정한대로 변수들을 Double()로 묶어주니 해결되었다.
+<br>
+
+- `/` 연산에서 소수점 자리가 너무 많이 나와 지저분하게 느껴졌다. 깔끔하게 소수점 둘째자리까지 나오게 해야겠다! 라는 생각으로 인터넷을 찾아보니 **가장 가까운 정수로 반올림해주는 함수**인 `round`의 존재를 알게 되었다. 나는 소수점 둘째자리까지 나타나게 하는 것이 목표였기 때문에 `(number * 100) / 100`을 사용해 둘째자리까지 나타나게 작성해주었다!
+  `round`를 사용하려면 `import Foundation`을 꼭!! 작성해주어야한다. 이것을 작성하지 않으면 에러가 발생한다..
 
 ---
 
